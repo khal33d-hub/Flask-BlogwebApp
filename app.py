@@ -1,12 +1,14 @@
 #IMPORTS
 from flask import Flask, render_template, request, redirect
 import pymongo
+from pymongo import MongoClient
 from models import PostModel
 
 # DATABASE
 app = Flask(__name__)
-app.config["MONGO_URI"] = "mongodb+srv://khal:onaolapo16.@cluster0.ibqpf.gcp.mongodb.net/mydb?retryWrites=true&w=majority"
-mongo = PyMongo(app)
+client = MongoClient()
+client = MongoClient("mongodb+srv://khal:onaolapo16.@cluster0.ibqpf.gcp.mongodb.net/mydb?retryWrites=true&w=majority")
+
 
 #URLS MAPPING
 @app.route('/')
@@ -16,14 +18,14 @@ def post_list():
     # all_posts = Post.query.order_by(-Post.created_date).all()
     return render_template("home.html", posts=all_posts)
 
-    @app.route('/new_post', methods = ['GET', 'POST'])
-    def posts():
-        if request.method == 'POST':
-            post_title = request.form['title']
-            post_content = request.form['content']
-            post_author = request.form['author']
+@app.route('/new_post', methods = ['GET', 'POST'])
+def posts():
+    if request.method == 'POST':
+        post_title = request.form['title']
+        post_content = request.form['content']
+        post_author = request.form['author']
 
-            all_posts=PostModel(author=post_author, content=post_content, title=post_title).save()
+        all_posts=PostModel(author=post_author, content=post_content, title=post_title).save()
         return redirect('/')
     else:
         return render_template("new_post.html")
