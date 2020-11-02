@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<fieldset>
+  <legend>  Edit Blog Post
+  </legend>
+<form class="" action="/posts/edit/{{ post._id }}" method="POST">
+
+  <label for="title"> Title:
+  <input type="text" name="title" id="title" value="{{ post.title }}">
+  </label>
+  <br>
+
+  <label for="author"> Author:
+    <input type="text" name="author" id="author" value="{{ post.author }}">
+  </label>
+  <br>
+
+  <label for="content"> Post:
+    <textarea name="content" id="content" rows="8" cols="80" value="{{ post.content }}">
+    </textarea>
+  </label>
+  <br>
+
+
+  <br>
+  <button class="save btn btn-primary" type="submit" name="Submit">SAVE</button>
+
+
+</form>
+</fieldset>
+{% endblock %}

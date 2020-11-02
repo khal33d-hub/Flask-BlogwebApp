@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+  {% for post in posts %}
+
+      <div class="post">
+          <h1>{{ post.title }}</h1>
+          <h2>{{ post.author }}</h2>
+          <p style="white-space:pre-wrap"> {{ post.content }}</p>
+
+          <div class="date">
+              <p>Published on: {{ post.created_date }}</p>
+              <p>ID: {{ post._id }} </p>
+          </div>
+      </div>
+
+      <a class="btn btn-primary" href="/posts/delete/{{ post._id }}"><span class="fa fa-remove"></span></a>
+      <a class="btn btn-primary" href="/posts/edit/{{ post._id }}"><span class="fa fa-pencil"></span></a>
+  {% endfor %}
+
+{% endblock %}

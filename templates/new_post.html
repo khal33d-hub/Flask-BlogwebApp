@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+
+
+
+{% block content %}
+<h1>New post</h1>
+
+<fieldset>
+  <legend>  Create New Blog Post
+  </legend>
+<form class="post-form loader" action="/new_post" method="POST">
+
+  <label> Title:
+  <input class="form-control" type="text" name="title" id="title" maxlength="25" required>
+  </label>
+  <br>
+
+  <label for="author"> Author:
+    <input class="form-control" type="text" name="author">
+  </label>
+  <br>
+
+  <div class="form-group">
+    <label for="content"> Post:
+      <textarea class="form-control"  id="content"  name="content" rows="3" placeholder="Type Post Here">
+      </textarea>
+      </label>
+  </div>
+  <br>
+
+
+  <br>
+  <button type="submit" class="save btn btn-info">Draft</button>
+  <button class="save btn btn-primary" type="submit" name="Submit">Save</button>
+
+
+</form>
+</fieldset>
+<script>var editor = new MediumEditor('.editable');</script>
+
+{% endblock %}
